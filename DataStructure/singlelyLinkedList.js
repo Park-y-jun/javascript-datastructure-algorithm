@@ -32,3 +32,5 @@ class SinglyLinkedList {
     return this;
   }
 }
+// 리스트를 탐색
+// 현재 노드의 이전 노트: pre  현재 참조하고 있는노드 temp
