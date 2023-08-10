@@ -31,6 +31,34 @@ class SinglyLinkedList {
     this.length++;
     return this;
   }
+
+  //리스트의 마지막 요소를 제거하고 그 값을 도출하는 메서드
+  pop(){
+    if (!this.head) return undefined;
+
+    // 리스트의 마지막 노드까지 탐색을 해서 도달을 해야지만 마지막 노드를 pop할 수가 있기에
+
+    //현재 탐색중인 노드의 위치
+    let tempo = this.head;
+
+    // 현재 탐색중인 노드 위치의 이전값
+    let pre = tempo;
+
+    //링크가 연결 되어있는 노드의 끝까지 탐색: tempo는 노드 연결에 따라 변경,, pre는 tempo의 이전 노드
+    while (tempo.next) {
+      pre = tempo;
+      tempo = tempo.next;
+    }
+
+    // 마지막 이전 노드를 꼬리 노드로 바꾸고, 마지막 노드 제거
+    this.tail = pre;
+    this.tail.next = null;
+    this.length--;
+
+    if (this.length === 0) {
+      this.head = null;
+      this.tail = null;
+    }
+    return tempo;
+  }
 }
-// 리스트를 탐색
-// 현재 노드의 이전 노트: pre  현재 참조하고 있는노드 temp
