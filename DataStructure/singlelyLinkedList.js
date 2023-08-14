@@ -61,4 +61,20 @@ class SinglyLinkedList {
     }
     return tempo;
   }
+
+  // 리스트의 헤드를 그 다음 노드로 옮기고 해당 노드의 연결을 제거하고 그 데이터를 도출
+  shift() {
+    if (!this.head) return undefined
+
+    const currentHead = this.head;
+    // 헤드 옮기기
+    this.head = currentHead.next
+    this.length--;
+
+    if(this.length === 0) {
+      this.tail = null
+    }
+    return currentHead;
+  }
+
 }
