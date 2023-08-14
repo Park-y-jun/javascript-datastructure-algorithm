@@ -20,7 +20,7 @@ class SinglyLinkedList {
     this.length = 0;
   }
   push(value) {
-    let newNode = new Node(value);
+    const newNode = new Node(value);
     if (!this.head) {
       this.head = newNode;
       this.tail = newNode;
@@ -77,4 +77,20 @@ class SinglyLinkedList {
     return currentHead;
   }
 
+  // 리스트의 맨 앞의 새로운 노드를 추가 하고 그것이 head가 됨
+  unshift(value) {
+    const newNode = new Node(value);
+    if(!this.head) {
+      this.head = newNode;
+      this.tail = this.head
+    } else {
+      // 새로운 노드와 리스트의 헤드와 링크 연결
+      newNode.next = this.head
+      //리스트의 head위치 변경
+      this.head = newNode
+    }
+
+    this.length++;
+    return this;
+  }
 }
