@@ -110,4 +110,20 @@ class SinglyLinkedList {
     }
     return currentNode
   }
+
+  // 해당 인덱스의 노드 데이터를 업데이트
+  set(index, value) {
+    // 해당 인덱스의 노드 데이터 추출
+    let nodeData = this.get(index);
+
+    if(nodeData) {
+      // value 업데이트
+      nodeData.value = value;
+      //성공 반환값
+      return true;
+    }
+    //실패 반환값
+    return false;
+  }
 }
+
