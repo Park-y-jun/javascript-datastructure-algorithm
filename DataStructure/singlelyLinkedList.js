@@ -93,4 +93,21 @@ class SinglyLinkedList {
     this.length++;
     return this;
   }
+
+  // 해당 인덱스의 노드 데이터를 반환하는 메서드
+  get(index) {
+    // 데이터를 추출할 수 있는 인덱스의 범위
+    if (index < 0  || index >= this.length) return undefined
+
+    // 리스트에는 정해진 인덱스가 없으므로 노드를 하나씩 카운팅 해야함
+    let counter = 0;
+    //리스트의 head부터 탐색
+    let currentNode = this.head
+    // 원하는 index의 위치까지 리스트 탐색
+    while(counter !== index) {
+      currentNode = currentNode.next;
+      counter++
+    }
+    return currentNode
+  }
 }
