@@ -125,5 +125,25 @@ class SinglyLinkedList {
     //실패 반환값
     return false;
   }
+
+  // 해당 인덱스의 노드 데이터 삽입 메서드
+   //삽입될 노드 이전 인덱스 노드와 그 다음 노드를 타겟하여서 삽입될 노드와 링크(next)를 연결해준다
+  insert(index, value) {
+    // 인덱스가 처음, 끝, 범위를 벗어날때
+     if (index < 0 || index > this.length) return false;
+     if (index === this.length) return !!this.push(value);
+     if (index === 0) return !!this.unshift(value);
+      // 삽입될 노드 생성, 전-후 노드 타겟
+      const newNode = new Node(value);
+      const previousNode = this.get(index - 1);
+      const nextNode = previousNode.next
+      // 링크연결
+      previousNode.next = newNode;
+      newNode.next = nextNode;
+
+      this.length++;
+      return true;
+     
+  }
 }
 
