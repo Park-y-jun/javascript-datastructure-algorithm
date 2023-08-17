@@ -143,7 +143,25 @@ class SinglyLinkedList {
 
       this.length++;
       return true;
-     
+  }
+  // 해당 인덱스의 노드데이터 삭제
+   // 삭제할 노드의 이전 인덱스 노드와 그 다음 인덱스 노드의 링크를 연결
+  remove(index) {
+  // 엣지 케이스
+    // 인덱스가 범위를 벗어난 경우
+    if (index < 0 || index > this.length) return undefined;
+    // 리스트의 첫 요소 삭제
+    if (index === 0) return this.shift();
+    //리스트의 맨끝 요소 삭제
+    if (index === this.length - 1) return this.pop();
+
+    const  previousNode = this.get(index - 1);
+    const removedNode = previousNode.next;
+    // 제거될 노드를 제외하고 링크연결
+    previousNode.next = removedNode.next;
+    this.length--;
+
+    return removedNode;
   }
 }
 
