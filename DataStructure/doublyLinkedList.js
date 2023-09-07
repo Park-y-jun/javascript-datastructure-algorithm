@@ -36,4 +36,24 @@
       return this;
   
     }
+
+    pop() {
+
+      if(!this.head) return undefined;
+
+      const popNode = this.tail
+      // 엣지 케이스
+      if (this.length === 1) {
+        this.head = null;
+        this.tail = null;
+        // tail을 이전 node로 바꿔주고 이전노드와 제거될 popNode의 모든 연결은 끊어준다.
+      } else {
+        this.tail = popNode.prev;
+        this.tail.next = null
+        popNode.prev = null
+      }
+
+      this.length--
+      return popNode;
+    }
   }
