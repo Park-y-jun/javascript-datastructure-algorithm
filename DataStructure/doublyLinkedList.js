@@ -23,7 +23,7 @@
         this.head = newNode;
         this.tail = newNode;
 
-      // 리스트에 노드들이 존재하는 경우 현재 리스트의 tail에 새로운 노드 연결
+        // 리스트에 노드들이 존재하는 경우 현재 리스트의 tail에 새로운 노드 연결
       } else {
         this.tail.next = newNode;
         // 새로운 노드와 기존 노드 연결
@@ -32,16 +32,14 @@
         this.tail = newNode;
       }
 
-      this.length++
+      this.length++;
       return this;
-  
     }
-
+    //리스트의 tail값 제거 밑 도출
     pop() {
+      if (!this.head) return undefined;
 
-      if(!this.head) return undefined;
-
-      const popNode = this.tail
+      const popNode = this.tail;
       // 엣지 케이스
       if (this.length === 1) {
         this.head = null;
@@ -49,11 +47,31 @@
         // tail을 이전 node로 바꿔주고 이전노드와 제거될 popNode의 모든 연결은 끊어준다.
       } else {
         this.tail = popNode.prev;
-        this.tail.next = null
-        popNode.prev = null
+        this.tail.next = null;
+        popNode.prev = null;
       }
 
-      this.length--
+      this.length--;
       return popNode;
+    }
+
+    //리스트의 head값 제거 밑 도출
+    shift() {
+      if (!this.head) return undefined;
+
+      const shiftNode = this.head;
+      //엣지 케이스
+      if (this.length === 1) {
+        this.head = null;
+        this.tail = null;
+        // head를 다음 node로 바꾸고 원래의 head와 바뀐 head의 모든 연결 끊기
+      } else {
+        this.head = shiftNode.next;
+        this.head.prev = null;
+        shiftNode.next = null;
+      }
+
+      this.length--;
+      return shiftNode;
     }
   }
