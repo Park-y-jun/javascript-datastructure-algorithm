@@ -88,17 +88,17 @@
         this.head = newNode;
       }
 
-      this.length++
+      this.length++;
       return this;
     }
     // 해당 인덱스의 node 반환
     get(index) {
       if (index <= 0 || index >= this.length) return null;
 
-      let currentIndex, currentNode
-      // index가 리스트의 절반 길이 보다 작은경우 
+      let currentIndex, currentNode;
+      // index가 리스트의 절반 길이 보다 작은경우
       // head 부터 탐색 중앙으로 탐색
-      if (index <= this.length/2) {
+      if (index <= this.length / 2) {
         currentIndex = 0;
         currentNode = this.head;
 
@@ -106,8 +106,8 @@
           currentNode = currentNode.next;
           currentIndex++;
         }
-      // index가 리스트의 절반 길이 보다 큰 경우
-      // tail 부터 탐색 중앙으로 탐색
+        // index가 리스트의 절반 길이 보다 큰 경우
+        // tail 부터 탐색 중앙으로 탐색
       } else {
         currentIndex = this.length - 1;
         currentNode = this.tail;
@@ -128,10 +128,55 @@
       if (nodeData) {
         nodeData.value = value;
 
-        return true
-
+        return true;
       } else {
-        return false
+        return false;
       }
+    }
+
+    insert(index, value) {
+
+      // 엣지 케이스
+      if (index < 0 || index > this.length) return false
+      if (index === this.length) return !!this.push(value);
+      if (index === 0) return !!this.unshift(value);
+
+      // 삽입될 노드 생성, 전-후 노드 타겟
+      const newNode = new Node(value)
+      const previousNode = this.get(index - 1);
+      const nextNode = previousNode.next
+
+      // 삽입될 노드와 그 앞뒤 노드의 링크를 연결해줌
+      previousNode.next = newNode;
+      newNode.next = nextNode;
+      nextNode.prev = newNode;
+      newNode.prev = previousNode;
+
+      this.length++
+      return true;
+    }
+
+    remove (index) {
+      
+      //엣지 케이스
+      if (index < 0 || index >= this.length) return false;
+      if (index === this.length - 1) return !!this.pop();
+      if (index === 0) return !!this.shift();
+
+      // 제거될 노드와 앞뒤 노드의 연결 제거
+      const removedNode = this.get(index);
+      const previousNode = removedNode.prev;
+      const nextNode = removedNode.next;
+
+      
+      previousNode.next = nextNode;
+      nextNode.prev = previousNode;
+
+      // 노드  링크 제거
+      removedNode.next = null;
+      removedNode.prev = null;
+
+      this.length--;
+      return true;
     }
   }
