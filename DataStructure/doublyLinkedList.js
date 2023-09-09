@@ -120,4 +120,18 @@
 
       return currentNode;
     }
+    // 해당 인덱스에 노드 데이터 value로 업데이트
+    set(index, value) {
+      //get을 이용한 탐색
+      const nodeData = this.get(index);
+      // 데이터 업데이트
+      if (nodeData) {
+        nodeData.value = value;
+
+        return true
+
+      } else {
+        return false
+      }
+    }
   }
