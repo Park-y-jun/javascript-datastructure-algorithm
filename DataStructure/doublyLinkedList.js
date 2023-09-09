@@ -91,4 +91,33 @@
       this.length++
       return this;
     }
+    // 해당 인덱스의 node 반환
+    get(index) {
+      if (index <= 0 || index >= this.length) return null;
+
+      let currentIndex, currentNode
+      // index가 리스트의 절반 길이 보다 작은경우 
+      // head 부터 탐색 중앙으로 탐색
+      if (index <= this.length/2) {
+        currentIndex = 0;
+        currentNode = this.head;
+
+        while (currentIndex !== index) {
+          currentNode = currentNode.next;
+          currentIndex++;
+        }
+      // index가 리스트의 절반 길이 보다 큰 경우
+      // tail 부터 탐색 중앙으로 탐색
+      } else {
+        currentIndex = this.length - 1;
+        currentNode = this.tail;
+
+        while (currentIndex !== index) {
+          currentNode = currentNode.prev;
+          currentIndex--;
+        }
+      }
+
+      return currentNode;
+    }
   }
