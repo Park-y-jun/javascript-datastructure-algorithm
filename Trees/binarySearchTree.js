@@ -69,5 +69,25 @@ class Node {
       }
       return false
     }
+
+      BFS() {
+        // BFS(){
+        //     //루트를 큐[]에 넣고 반복문을 큐[]가 empty일 때 까지 돌려
+        //     // 큐[] 첫 요소는 data[]에 넣어주고 왼쪽, 오른쪽을 찾아서 큐[]에 푸시 
+        //     // 다시 남은 큐[]요소들로 반복
+        //     var node = this.root,
+        //         data = [],
+        //         queue = [];
+        //     queue.push(node);
+    
+        //     while(queue.length){
+        //        node = queue.shift();
+        //        data.push(node.value);
+        //        if(node.left) queue.push(node.left);
+        //        if(node.right) queue.push(node.right);
+        //     }
+        //     return data;
+        // }
+    }
   }
   
