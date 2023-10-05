@@ -54,15 +54,20 @@ class MaxBinaryHeap {
       let leftChildIndex = 2 * index + 1;
       let rightChildIndex = 2 * index + 2;
       let leftChild, rightChild;
+      //swap 유무
       let swap = null;
-
+      // 자식 인덱스 유효성검사
       if (leftChildIndex < length) {
+
         leftChild = this.value[leftChildIndex];
-        if (leftChild < element) {
+        if (leftChild > element) {
           swap = leftChildIndex;
         }
       }
+      // 자식 인덱스 유효성검사
       if (rightChildIndex < length) {
+
+      // 오른쪽 자식 노드의 경우 SWAP유무와 형제노드 끼리의 값을 비교해야함
         rightChild = this.value[rightChildIndex];
         if (
           (swap === null && rightChild > element) ||
@@ -71,9 +76,12 @@ class MaxBinaryHeap {
           swap = rightChildIndex;
         }
       }
+      //swap에 따라서 반복문 중지
       if (swap === null) break;
+      // 위치 변환
       this.value[index] = this.value[swap];
       this.value[swap] = element;
+      // 바뀐위치로 인덱스 바꿔주기
       index = swap;
     }
   }
