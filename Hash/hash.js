@@ -43,11 +43,36 @@ class HashTable {
     //해당 인덱스에 해당하는 버켓의 [키, 값 탐색]
     if (this.keyMap[index]) {
       for (let i = 0; i < this.keyMap[index].length; i++) {
-        if ((this.keyMap[index][i][0] === key)) {
+        if (this.keyMap[index][i][0] === key) {
           return this.keyMap[index][i][1];
         }
       }
     }
     return undefined;
+  }
+
+  // 해시테이블의 데이터 조사 keys(), values() Set집합을 이용해 중복 데이터 방지
+  keys() {
+    let keysArr = new Set([]);
+    for (let i = 0; i < this.keyMap.length; i++) {
+      if (this.keyMap[i]) {
+        for (let j = 0; j < this.keyMap[i].length; j++) {
+          keysArr.add(this.keyMap[i][j][0]);
+        }
+      }
+    }
+    return keysArr;
+  }
+
+  values() {
+    let valuesArr = new Set([]);
+    for (let i = 0; i < this.keyMap.length; i++) {
+      if (this.keyMap[i]) {
+        for (let j = 0; j < this.keyMap[i].length; j++) {
+          valuesArr.add(this.keyMap[i][j][1]);
+        }
+      }
+    }
+    return valuesArr;
   }
 }
