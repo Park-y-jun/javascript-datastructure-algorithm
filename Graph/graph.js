@@ -49,4 +49,33 @@ class Graph {
     //타겟 노드 객체 삭제
     delete this.adjacencyList[vertex]
   }
+
+  // 그래프 깊이 우선 탐색: 시작 노드의 인접 노드중 하나로 가고 또 인접 노드의 하나로 계속 꼐속 , 이때 이미 갔던 인접노드를 체크를 해두고 있어야함
+  depthFirstSearch1(start) {
+    //탐색 경로
+    const result = [];
+    //탐색된 노드 체크 
+    const visited = {};
+    const adjacencyList = this.adjacencyList;
+
+    const dfs = (vertex) => {
+      if (!vertex) return null;
+
+      //탐색된 노드 체크
+      visited[vertex] = true;
+      //탐색 노드 체크
+      result.push(vertex);
+      // 노드에 연결된 인접 노드들 중 가지 않은 곳(visited:true가 아닌 곳)을 재귀적으로 탐색
+      adjacencyList[vertex].forEach((neighborVertex) => {
+        if (!visited[neighborVertex]) {
+          return dfs(neighborVertex);
+        }
+      });
+    };
+    // 깊이우선 탐색 시작
+    dfs(start)
+
+    return result;
+  }
+
 }
