@@ -47,14 +47,14 @@ class Graph {
       this.removeEdge(vertex, connectedVertex);
     }
     //타겟 노드 객체 삭제
-    delete this.adjacencyList[vertex]
+    delete this.adjacencyList[vertex];
   }
 
   // 그래프 깊이 우선 탐색: 시작 노드의 인접 노드중 하나로 가고 또 인접 노드의 하나로 계속 꼐속 , 이때 이미 갔던 인접노드를 체크를 해두고 있어야함
   depthFirstSearch1(start) {
     //탐색 경로
     const result = [];
-    //탐색된 노드 체크 
+    //탐색된 노드 체크
     const visited = {};
     const adjacencyList = this.adjacencyList;
 
@@ -73,9 +73,33 @@ class Graph {
       });
     };
     // 깊이우선 탐색 시작
-    dfs(start)
+    dfs(start);
 
     return result;
   }
+  
+  depthFirstSearch2(start) {
+    // 스택으로 추적
+    const stack = [start];
+    const result = [];
+    const visited = {};
+    // 현재 경로의 노드
+    let currentVertex;
 
+    //탐색된 노드 체크
+    visited[start] = true;
+    while (stack.length) {
+      // 추적중인 스택에서 현재 탐색중인 노드를 result push
+      currentVertex = stack.pop();
+      result.push(currentVertex);
+      // 리스트 키의 값(배열)에는 키에 연결된 인접 노드들이 있으므로 깊이 탐색이 가능 
+      this.adjacencyList[currentVertex].forEach((neighborVertex) => {
+        if (!visited[neighborVertex]) {
+          visited[neighborVertex] = true;
+          stack.push(neighborVertex);
+        }
+      });
+    }
+    return result;
+  }
 }
