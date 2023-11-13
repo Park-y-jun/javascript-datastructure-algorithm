@@ -77,7 +77,7 @@ class Graph {
 
     return result;
   }
-  
+
   depthFirstSearch2(start) {
     // 스택으로 추적
     const stack = [start];
@@ -90,13 +90,38 @@ class Graph {
     visited[start] = true;
     while (stack.length) {
       // 추적중인 스택에서 현재 탐색중인 노드를 result push
+      // pop()을 이용해 스택요소 계속 꼬리의 꼬리를 물어서 깊이 탐색 하도록
       currentVertex = stack.pop();
       result.push(currentVertex);
-      // 리스트 키의 값(배열)에는 키에 연결된 인접 노드들이 있으므로 깊이 탐색이 가능 
+      // 리스트 키의 값(배열)에는 키에 연결된 인접 노드들이 있으므로 깊이 탐색이 가능
       this.adjacencyList[currentVertex].forEach((neighborVertex) => {
         if (!visited[neighborVertex]) {
           visited[neighborVertex] = true;
           stack.push(neighborVertex);
+        }
+      });
+    }
+    return result;
+  }
+
+  //넓이 우선 탐색
+
+  //시작 노드의 모든 인접노드 탐색 순서 상관 x , 그다음 인접노드 에서도 그 인접노드의 인접한 곳 모두탐색
+  breadthFirstSearch(start) {
+    const queue = [start];
+    const result = [];
+    const visited = {};
+    let currentVertex;
+    visited[start] = true;
+    // 깊이우선과 다르게 큐 shift()를 하여 요소를 순차적으로 수평방향  
+    while (queue.length) {
+      currentVertex = queue.shift();
+      result.push(currentVertex);
+
+      this.adjacencyList[currentVertex].forEach((neighborVertex) => {
+        if (!visited[neighborVertex]) {
+          visited[neighborVertex] = true;
+          queue.push(neighborVertex);
         }
       });
     }
