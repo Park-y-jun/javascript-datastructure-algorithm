@@ -1,3 +1,4 @@
+//Minimize Maximum Pair Sum in Array
 const minPairSum = (num) => {
   // nums 배열 순회를 통해서 가장 큰 요소와 작은 요소를 매칭= 더하기
   // 더한 페어들끼리중 max()를 찾아서 리턴

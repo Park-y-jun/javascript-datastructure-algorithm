@@ -1,3 +1,4 @@
+//Reduction Operations to Make the Array Elements Equal
 const reductionOperations = function (nums) {
   //1. 가장 큰 값 찾기
   //2. 2. 두번째 큰 값 찾기
